@@ -1,0 +1,69 @@
+
+
+
+<div class="login-page" [style.backgroundImage]="'url(' + backgroundImage + ')'" style="height: 100vh; text-align: center;">
+
+    <div class="login-box">
+
+          <span class="font fs-15">Bem-vindo!</span>
+
+         
+        <form class="mt-50" [formGroup]="myForm" (ngSubmit)="login()" [ngStyle]="phone ? {'width':'85vw'}:{'width':'350px'}" >
+         
+            <div class="d-flex flex-column align-items-start w-100 font">
+                <mat-label > E-mail </mat-label >
+                <mat-form-field appearance="outline" class="w-100" color="primary" >
+                <input matInput 
+                       type="text" 
+                       formControlName="email" 
+                      />
+                <mat-error *ngIf="validField ('email')" class="error-msg">{{ emailErrorMsg }} </mat-error>
+                </mat-form-field>
+           </div>
+
+
+           <div class="d-flex flex-column align-items-start w-100 font mt-30">
+                <mat-label > E-Senha </mat-label >
+                <mat-form-field appearance="outline" class="w-100" color="primary" >
+                <input matInput 
+                       [type]="confirmVisible ? 'text' : 'password'" 
+                       formControlName="password" 
+                       />
+                <button type="button" mat-icon-button  class="eye" (click)="togglePasswordVisibility('confirm')">
+                    <mat-icon>{{ confirmVisible ? 'visibility' : 'visibility_off' }}</mat-icon>
+                </button> 
+
+                <mat-error *ngIf="validField ('password')" class="error-msg"> Campo requerido. </mat-error>
+                </mat-form-field>
+            </div>    
+
+         
+            <button  type="submit" class="acceptButton w-100 mt-30"  >
+              Enviar
+            </button>
+            <!-- input -->
+            
+            <div class="d-flex justify-content-between align-items-center  mt-30 w-100">
+
+              <mat-slide-toggle  (change)="rememberMe($event )"> Lembre-me  </mat-slide-toggle>
+              
+              <span  (click)="openDialog()"  class="selected font"
+              >Esqueceu sua senha?</span>
+              
+            </div>
+
+        </form>
+
+        <span class="d-block w-100 font fs-10 mt-30" style="color: rgb(197, 197, 197); text-align: end;"> Version 1.0.0</span>
+    </div>
+</div>
+
+
+
+
+  <div class="loading-overlay" *ngIf="isLoading">
+    <div class="spinner-grow " role="status" style="width: 50px; height: 50px;"  >
+      <mat-spinner></mat-spinner>
+    </div>
+  </div> 
+  

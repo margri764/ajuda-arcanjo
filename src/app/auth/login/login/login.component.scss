@@ -1,0 +1,72 @@
+
+
+.login-page{
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-color: #e9ecef;
+  }
+  
+  .login-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 25px;
+    opacity: 0.87;
+    border-radius: 10px;
+    height: 390px;
+  }
+  
+  
+  .eye {
+    position: absolute;
+    top: 60%;
+    right: 5px;
+    transform: translateY(-65%);
+  }
+  
+  .mat-mdc-form-field {
+  height: 50px;
+  .mat-mdc-form-field-flex {
+    height: 50px;
+    align-items: center;
+  }
+  }
+  
+  
+  p{
+    font-size: 1.1em;
+  }
+  .icon{
+    cursor: pointer;
+  }
+  
+  .select[disabled] {
+    background-color: #e9ecef;  
+    color: #99999900;  
+    cursor: not-allowed;
+  }
+  
+  
+  .select{
+    height: 36px; 
+    border-color: rgb(207, 207, 207); 
+    font-size: 1.1em; 
+    font-family: 'source_3'; 
+    color: gray;
+  }
+  
+  .expanded {
+    height: auto;
+  }
+  
+  .custom-text{
+    color: rgb(108, 108, 108);
+  }
+  

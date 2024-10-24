@@ -1,0 +1,86 @@
+
+@use 'sass:math';
+$columns: 12; // Define el número de columnas
+$col-gutter: 15px; // Espaciado entre columnas
+
+@mixin col($size) {
+  width: percentage(math.div($size, $columns)); // Calcula el porcentaje con base en el tamaño de la columna
+}
+
+// Estilos para la fila
+.row {
+  display: flex;
+  flex-wrap: wrap; // Permite que las columnas se envuelvan en múltiples filas
+  margin: -(math.div($col-gutter, 2));// Añadir margen entre columnas
+// Compensa el espaciado
+}
+
+// Estilos para las columnas
+.col {
+
+  padding: -(math.div($col-gutter, 2));// Espacio interno en cada columna
+  box-sizing: border-box; // Incluye padding en el cálculo de ancho
+  margin: -(math.div($col-gutter, 2));// Añadir margen entre columnas
+}
+
+// Clases de columna para diferentes tamaños
+.col-12 { @include col(12); }
+.col-11 { @include col(11); }
+.col-10 { @include col(10); }
+.col-9 { @include col(9); }
+.col-8 { @include col(8); }
+.col-7 { @include col(7); }
+.col-6 { @include col(6); }
+.col-5 { @include col(5); }
+.col-4 { @include col(4); }
+.col-3 { @include col(3); }
+.col-2 { @include col(2); }
+.col-1 { @include col(1); }
+
+// Clases específicas para pantallas grandes (de tipo XL)
+@media (min-width: 1200px) {
+  .col-xl-12 { @include col(12); }
+  .col-xl-11 { @include col(11); }
+  .col-xl-10 { @include col(10); }
+  .col-xl-9 { @include col(9); }
+  .col-xl-8 { @include col(8); }
+  .col-xl-7 { @include col(7); }
+  .col-xl-6 { @include col(6); }
+  .col-xl-5 { @include col(5); }
+  .col-xl-4 { @include col(4); }
+  .col-xl-3 { @include col(3); }
+  .col-xl-2 { @include col(2); }
+  .col-xl-1 { @include col(1); }
+}
+
+// Mínimo ancho para pantallas medianas
+@media (min-width: 768px) {
+  .col-md-12 { @include col(12); }
+  .col-md-11 { @include col(11); }
+  .col-md-10 { @include col(10); }
+  .col-md-9 { @include col(9); }
+  .col-md-8 { @include col(8); }
+  .col-md-7 { @include col(7); }
+  .col-md-6 { @include col(6); }
+  .col-md-5 { @include col(5); }
+  .col-md-4 { @include col(4); }
+  .col-md-3 { @include col(3); }
+  .col-md-2 { @include col(2); }
+  .col-md-1 { @include col(1); }
+}
+
+// Mínimo ancho para pantallas pequeñas
+@media (max-width: 576px) {
+  .col-sm-12 { @include col(12); }
+  .col-sm-11 { @include col(11); }
+  .col-sm-10 { @include col(10); }
+  .col-sm-9 { @include col(9); }
+  .col-sm-8 { @include col(8); }
+  .col-sm-7 { @include col(7); }
+  .col-sm-6 { @include col(6); }
+  .col-sm-5 { @include col(5); }
+  .col-sm-4 { @include col(4); }
+  .col-sm-3 { @include col(3); }
+  .col-sm-2 { @include col(2); }
+  .col-sm-1 { @include col(1); }
+}

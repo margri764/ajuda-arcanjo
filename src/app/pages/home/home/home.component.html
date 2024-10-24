@@ -1,0 +1,64 @@
+<mat-toolbar class="justify-content-start toolbar" style="background-color: #f8fcff; position: fixed; width: 100%; z-index: 1000; border-bottom: 1px solid rgba(0, 0, 255, 0.27);   box-shadow: 0px 0px 14px 4px rgba(203, 203, 203, 0.75);
+-webkit-box-shadow: 0px 0px 14px 4px rgba(203, 203, 203, 0.75);
+-moz-box-shadow: 0px 0px 14px 4px rgba(203, 203, 203, 0.75);">
+   
+   <img src="assets/logo_arcanjo.png" alt="users" class="cursor" width="220px" *ngIf="!phone" routerLink="/painel" />
+
+    <button type="button" mat-icon-button class="burger" (click)="drawer.toggle()">
+        <mat-icon>menu</mat-icon>
+    </button>
+    
+    <span class="example-spacer"></span>
+
+    <img [src]="user | imagenPath" class="rounded-circle"  style="width: 35px; height: 35px " *ngIf="user?.Ruta_Imagen && user?.Ruta_Imagen !== ''"> 
+    <img src="assets/images/no-image.jpg" class="rounded-circle" style="width: 35px; height: 35px "  *ngIf="!user?.Ruta_Imagen ||user?.Ruta_Imagen  === ''">
+    
+    <span class="font fs-8 ml-10 mr-10">{{user?.name}}</span>
+</mat-toolbar>
+
+
+
+<mat-drawer-container style="height: 100vh;">
+    <!-- Aquí se configura el cajón como 'side' -->
+    <mat-drawer #drawer mode="side" position="start" [opened]="!phone" style="width: 250px;">
+
+        <div class="d-flex flex-column align-items-start pd-10 mt-50" style="background-color: #f8fcff; height: 100%;">
+
+            <div class="menu-item" style="margin-top: 70px;" routerLink="/painel/endereco" [ngClass]="{'selected-item': isFixedBackground === 'cep'}" (click)="handleMenuClick('cep', drawer)" >
+                
+                <span class="material-symbols-outlined icons " style="margin-left: 2px;">code</span>
+                <span class="font fs-10 ml-15" > CEP </span>
+            
+            </div>
+            
+            <div class="menu-item" style="margin-top: 20px;" [ngClass]="{'selected-item': isFixedBackground === 'bank'}" (click)="handleMenuClick('bank', drawer)">
+                <span class="material-symbols-outlined icons">account_balance</span>
+                <span class="font fs-10 ml-15" > Bancos </span>
+            </div>
+     
+            <div style="width: 80%; margin-top: 50px; color: black;"></div>
+
+            <div class="menu-item" (click)="logout()">
+                <span class="material-symbols-outlined icons">power_settings_new</span>
+                <span class="font fs-10 ml-15"> Sair </span>
+            </div>
+        </div>
+    </mat-drawer>
+
+    
+
+    <!-- Contenedor del contenido principal -->
+    <div  style="flex: 1; padding: 20px; display: flex; justify-content: center; align-items: center; margin-top: 80px;">
+
+        <div class="animate__animated animate__fadeIn " style="width: 100%; height: 100%; ">
+
+            <app-breadcrumb></app-breadcrumb>
+
+            <div style="margin-top: 50px;">
+                <router-outlet></router-outlet>
+
+            </div>
+        </div>
+
+    </div>
+</mat-drawer-container>

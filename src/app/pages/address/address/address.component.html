@@ -1,0 +1,184 @@
+
+
+<div #top></div>
+  
+<div class="row justify-content-center customShadow" style="padding: 50px;" >
+
+  
+  <form  [formGroup]="myForm" class="flex-form" [ngStyle]="!phone ?{'max-width': '1000px'}:{}"> 
+
+            
+        <div class="d-flex justify-content-end align-items-center w-100" [ngStyle]="!phone ?{'margin-right':'40px'}:{}" >
+        
+          <button type="button" class="acceptButton"  (click)="openInsertCEPModal()" >
+            <span class="material-icons" style="color: white;">search</span> &nbsp; Pesquisa CEP          
+          </button>
+
+          &nbsp;&nbsp;
+
+          <button type="button" class="acceptButton "  (click)="showSearchLabel = true" >
+            <span class="material-icons" style="color: white;">place</span> &nbsp; Novo Endereço          
+          </button> 
+
+
+        </div>
+    
+        <div class="mt-30" [ngStyle]="showSearchLabel ? {'display':'block'}:{'display': 'none'}" >
+            <mat-label class="font d-block"> <b>Buscar endereço residencial</b> </mat-label>
+            <mat-form-field appearance="outline" class="w-100" color="primary"  >
+            <input matInput 
+                    type="text"  
+                    formControlName="search" 
+                    #inputPlaces 
+                    id="inputPlaces" 
+                    placeholder="" 
+                    formControlName="search"
+              />
+            </mat-form-field>
+        </div>
+
+        <div class="col-sm-12 col-12 col-md-12 mt-50 mb-20" >
+          <div class="d-flex justify-content-start cursor"  (click)="showMap = !showMap" *ngIf="!showMap">
+          <span class="material-icons-outlined cursor" style="color: blue" >location_on</span> 
+          <span >Ver mapa
+          </span>
+          </div>
+          <div class="d-flex justify-content-start cursor"  (click)="showMap = !showMap" *ngIf="showMap">
+          <span class="material-icons-outlined cursor" style="color: blue" >location_off</span> 
+          <span >Ocultar mapa
+          </span>
+          </div>
+          <!-- <div class="maps mt2 shadow " #divMap ></div> -->
+          <div class="maps mt-2" #divMap [ngStyle]="!showMap ? { 'display': 'none'}:{'display': 'block'}" ></div>
+        </div>
+
+
+          <div class="col-sm-12 col-4">
+                  <mat-label class="font f-w-600 m-b-8 d-block"> <b> Cidade</b> </mat-label>
+                  <mat-form-field appearance="outline" class="w-100" color="primary"  >
+                  <input matInput
+                        type="text"  
+                        formControlName="city"
+                          />
+                  @if(f['city'].touched && f['city'].invalid) {
+                      <mat-hint class="m-b-16 error-msg">
+                      @if(f['city'].errors && f['city'].errors['required']) {
+                      <div class="error">Dado obrigatorio.</div>
+                      } 
+                      </mat-hint>
+                      }
+                  </mat-form-field>
+          </div>
+        
+          <div class="col-sm-12 col-5">
+                  <mat-label class="font f-w-600 m-b-8 d-block"> <b> Logradouro</b> </mat-label>
+                  <mat-form-field appearance="outline" class="w-100" color="primary"  >
+                  <input matInput 
+                          type="text"
+                          formControlName="streetName"
+                          />
+                  @if(f['streetName'].touched && f['streetName'].invalid) {
+                      <mat-hint class="m-b-16 error-msg">
+                      @if(f['streetName'].errors && f['streetName'].errors['required']) {
+                      <div class="error">Dado obrigatorio.</div>
+                      } 
+                      </mat-hint>
+                      }
+                  </mat-form-field>
+          </div>
+          
+          <div class="col-sm-12 col-2">
+                  <mat-label class="font f-w-600 m-b-8 d-block"> <b> Número</b> </mat-label>
+                  <mat-form-field appearance="outline" class="w-100" color="primary"  >
+                  <input matInput 
+                          type="text"  
+                          formControlName="streetNumber" 
+                          #streetNumber
+                      />
+                  @if(f['streetNumber'].touched && f['streetNumber'].invalid) {
+                      <mat-hint class="m-b-16 error-msg">
+                      @if(f['streetNumber'].errors && f['streetNumber'].errors['required']) {
+                      <div class="error">Dado obrigatorio.</div>
+                      } 
+                      </mat-hint>
+                      }
+                  </mat-form-field>
+          </div>
+
+        
+          <div class="col-sm-12 col-4" >
+              <mat-label class="font f-w-600 m-b-8 d-block"> <b> Bairro</b> </mat-label>
+              <mat-form-field appearance="outline" class="w-100" color="primary"  >
+              <input matInput 
+                      type="text"  
+                      formControlName="neighborhood"
+                    />
+              @if(f['neighborhood'].touched && f['neighborhood'].invalid) {
+                  <mat-hint class="m-b-16 error-msg">
+                  @if(f['neighborhood'].errors && f['neighborhood'].errors['required']) {
+                  <div class="error">Dado obrigatorio.</div>
+                  } 
+                  </mat-hint>
+                  }
+              </mat-form-field>
+          </div>
+        
+          <div class="col-sm-12 col-5" >
+              <mat-label class="font f-w-600 m-b-8 d-block"> <b> Estado</b> </mat-label>
+              <mat-form-field appearance="outline" class="w-100" color="primary"  >
+              <input matInput 
+                      type="text"  
+                      formControlName="province"
+                    />
+              @if(f['province'].touched && f['province'].invalid) {
+                  <mat-hint class="m-b-16 error-msg">
+                  @if(f['province'].errors && f['province'].errors['required']) {
+                  <div class="error">Dado obrigatorio.</div>
+                  } 
+                  </mat-hint>
+                  }
+              </mat-form-field>
+          </div>
+              
+          <div class="col-sm-12 col-2">
+              <mat-label class="font f-w-600 m-b-8 d-block"> <b> CEP</b> </mat-label>
+              <mat-form-field appearance="outline" class="w-100" color="primary"  >
+              <input matInput 
+                      type="text"  
+                      formControlName="postal_code"
+                      />
+              @if(f['postal_code'].touched && f['postal_code'].invalid) {
+                  <mat-hint class="m-b-16 error-msg">
+                  @if(f['postal_code'].errors && f['postal_code'].errors['required']) {
+                  <div class="error">Dado obrigatorio.</div>
+                  } 
+                  </mat-hint>
+                  }
+              </mat-form-field>
+          </div>
+
+
+
+       <!-- <div class="mt-3 col-4" > 
+        <input type="text"  class="form-control" formControlName="coords" style="display: none;">
+       </div>  -->
+<!-- 
+       <div class="d-flex justify-content-start  w-100">
+         <button type="button" class="acceptButton" (click)="onSaveForm()" style="margin-bottom: 30px;"> Salvar </button> &nbsp;
+       </div> -->
+
+       <div #addedAdress ></div>
+
+       
+  </form>
+
+</div>
+
+
+  <div class="loading-overlay" *ngIf="isLoading">
+  <div class="spinner-grow " role="status" style="width: 50px; height: 50px;"  >
+    <span class="sr-only">Loading...</span>
+  </div>
+  </div> 
+
+    

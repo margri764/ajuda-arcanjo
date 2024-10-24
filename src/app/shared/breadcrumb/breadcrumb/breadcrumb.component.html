@@ -1,0 +1,13 @@
+
+
+
+<div class="d-flex justify-content-start align-items-center w-100 ">
+
+    <div class="d-flex justify-content-center align-items-center " [ngClass]="back ? 'iconSelected':'iconDeselected' " (click)="goBack()" [ngStyle]="!showBackArrow ? { 'visibility':'hidden'}:{'visibility':'visible', 'color':'blue'}" >
+
+        <span class="material-symbols-outlined  cursor">arrow_back_ios_new</span>
+
+        
+    </div> &nbsp;
+    <span class="font fs-15"  style="font-family: 'poppins-regular';"> {{pageInfo.title}} </span>
+</div>
